@@ -43,10 +43,28 @@
 ### Task 4.2 — Step 2
 **Question:** Set a timer for eight minutes and sketch eight different layouts for one screen: a claims list with filters and a detail panel.
 
-**Solution:** **Blocked.** No physical drawing pad or paper set up for hand-sketching at the moment. Marked Blocked rather than skipped or faked digitally, since the exercise's value is specifically in paper's speed and disposability — a mouse-drawn substitute wouldn't test the same thing.
+**Solution:** Initially **Blocked** — no physical drawing pad or paper set up for hand-sketching. Marked Blocked rather than skipped or faked digitally, since the exercise's value is specifically in paper's speed and disposability, which a mouse-drawn substitute wouldn't test. Unblocked once a way to sketch by hand was available; ran the timed eight-minute/eight-sketch round for the claims-list screen.
 
-### Task 4.2 — Steps 3–5
-**Status:** To do — blocked behind Step 2 (sketch a settings page eight ways; pick the best of each set and redraw larger with annotations; photograph everything into `02-Module-Work`). Not started; will resume once a drawing pad/paper setup is available.
+### Task 4.2 — Step 3
+**Question:** Do it again for a different screen — a settings page.
+
+**Solution:** Completed — same eight-minute/eight-sketch exercise, this time for a generic settings page.
+
+### Task 4.2 — Step 4
+**Question:** Pick your best from each set and redraw it larger with annotations.
+
+**Solution:** Picked one favorite from each set of eight and redrew both larger with annotated reasoning:
+
+**Claims screen** — filter rail kept narrow and stacked rather than wide, since filters are a supporting tool, not the main content, for someone who spends most of their time scanning the list and reading detail. The selected row is marked with a left border plus shaded background rather than colour alone, so it survives quick or greyscale scanning. Rows are kept to two fields (claim ID, status) with everything else one click away in the detail panel, which goes full-width below the list rather than beside it — the deliberate trade-off being that detail content (multiple fields, tabs) needs the width more than a side-by-side layout would allow.
+
+**Settings screen** — section labels sit above their group in lighter, smaller text with no border, since they're dividers, not settings themselves. Navigational rows end in a chevron and toggle rows end in a switch, so the row signals what tapping it does before it's tapped. This variant needs no navigation model at all (no tabs, no sidebar), which is both the simplest structure for a modest option count and the most familiar pattern (mirrors mobile OS settings). Log out is placed last, separated from routine settings, since it's a destructive one-way action and shouldn't be reachable by accident while scanning.
+
+Two threads from these annotations were left open rather than resolved on the spot: what the claims screen's detail panel shows before any row is selected, and whether "Support" (where Log out was hedgingly placed) is a real third settings section or Log out is really sitting alone with no group around it.
+
+### Task 4.2 — Step 5
+**Question:** Photograph everything into your `02-Module-Work` folder.
+
+**Solution:** Completed — all sixteen quick sketches plus the two annotated redraws photographed and saved into `02-Module-Work`.
 
 ---
 
@@ -86,5 +104,54 @@ Revised once after critique flagged two dead-end error paths (a stock-out and a 
 
 - **Missing:** the flow starts at "New order received" as if it appears on its own, with no step showing an ops person actually transcribing a WhatsApp order into the system — arguably the highest-risk moment in the whole process. The owner's "Business summary" screen has nothing in the flow feeding it (what exactly rolls up into "how the business is doing" is still undefined). The warehouse manager's inventory-update action — the thing that actually determines whether "Stock available?" says yes — isn't shown as an event anywhere in the flow, only as a value that gets checked.
 - **Internal logic vs. user logic:** the "reassign or wait" decision assumes the ops person can judge driver load in the moment, but the Driver workload screen is a separate destination a click away in the sitemap rather than surfaced at the point of decision — organizing screens as separate concerns (system logic) over what the person actually needs visible right then (user logic). Similarly, auto-logging a late reason the moment a delivery misses its window is clean to compute but may deny the ops person a chance to confirm or edit the reason before it's recorded.
+
+---
+
+## Task 4.4 — Learn: Dashboards and internal tools
+
+### Task 4.4 — Step 1
+**Question:** Watch the guide and read the NN/g article.
+
+**Solution:** Completed — watched the dashboard-design video guide and read NN/g's *Dashboard Design* article.
+
+### Task 4.4 — Step 2
+**Question:** Write down the anatomy of a dashboard: navigation, filters, KPIs, primary data view, detail panel, actions.
+
+**Solution (after two rounds of revision):**
+
+- **Navigation** — switches between different sets of information; the screen itself changes.
+- **Filters** — narrows to a subset of the current data; the screen stays the same, which is the explicit distinction drawn from Navigation.
+- **KPIs** — Key Performance Indicators, the progress metrics tied to business goals. The first draft reached for generic consumer-app examples (user retention, MAU, AOV); revised to Harvest-Hub-appropriate ones instead — late order rate, low-stock items, unassigned orders — since an internal ops tool is measured on operational health, not growth metrics.
+- **Primary data view** — the main chart or table the dashboard exists to show.
+- **Detail panel** — revised from "more information about a feature" to more information about a *selected record* in the primary data view, since a detail panel is triggered by picking an item, not a dashboard feature.
+- **Actions** — let the user change something from the dashboard, covering both data-mutating actions (update) and non-mutating ones (export).
+
+### Task 4.4 — Step 3
+**Question:** List the specific problems dense interfaces face — scanning, data density, filter state, bulk actions, pagination versus infinite scroll, keyboard use.
+
+**Solution:**
+
+- **Scanning** — a dense screen forces the eye to read every row when nothing carries deliberate visual weight; without hierarchy, a user can't skip what's irrelevant, which defeats the point of showing a lot at once.
+- **Data density** — more fields packed in makes it harder to tell which few actually drive a decision; the failure mode is treating "the data has this field" as "the user needs to see it always," rather than allowing show/hide or reprioritization per task.
+- **Filter state** — as active filters accumulate, a user can lose track of what's narrowing the view, leading either to an unexplained empty/odd result set, or to misreading a partial view as the complete picture. Active filters need to be visible and removable at a glance.
+- **Bulk actions** — dense tables exist so someone can act on many rows at once, which risks selecting more or fewer rows than intended — including the sharp distinction between "all visible" and "all matching this filter." Needs clear selection state and a confirmation step scaled to the size of the action.
+- **Pagination vs. infinite scroll** — pagination gives a sense of total scope and a stable position to return to at the cost of a per-page click; infinite scroll removes that friction but costs the sense of total size, a bookmarkable position, and often a real footer/summary.
+- **Keyboard use** — dense interfaces are exactly where keyboard navigation matters most for repetitive, many-row tasks, yet it's where it's most often neglected; unpredictable tab order and invisible focus states force keyboard-benefiting users back onto a mouse.
+
+**Harvest Hub connection:** the brief states the ops team is "much faster on the spreadsheet than they'd be on a new system" — and what spreadsheets are fast at is exactly keyboard-driven range selection for bulk operations. If Harvest Hub's order table only supports bulk-selecting rows by mouse click, it isn't just a weaker keyboard experience — it's slower than the spreadsheet it's meant to replace, for the specific people the brief already warns are reluctant to give it up. Keyboard use and bulk actions are the same problem from two angles here, not two independent items.
+
+### Task 4.4 — Step 4
+**Question:** For each problem, find a solution in your reference library and note it.
+
+**Solution:** Built `Dense-Interface-Analysis.docx` (saved to `05-Reference-Library`), cross-checking all six problems against five real reference screens (Splitwise Activity, Amazon Alexa's More menu, the default Calculator, Google Classroom's home dashboard, Rapido's rating screen) — noting honestly where a problem didn't apply to a screen rather than inventing a solution for it. Concrete solutions found: colour/weight-coding Splitwise rows by amount so high-stakes entries stand out; a "Settle selected" bulk action with a selected-count indicator; a "Today / Earlier" divider in place of full pagination for the infinite-scroll activity feed; collapsing the Calculator's history by default to free up primary-task space; a "Clear history" control kept separate from AC to avoid confusing the two.
+
+**Gap surfaced:** every one of the five reference screens is a touch-only mobile app, so **Keyboard use scored "No" on all five** — not because it doesn't matter, but because nothing in the existing reference library could show a real example solution for it. This is the one problem with zero example behind it, and — per the Harvest Hub connection above — the one most likely to matter for the actual product, since ops runs it on laptops, not phones. Flagged as worth adding a desktop, keyboard-driven reference screen (even something as ordinary as Gmail or Google Sheets) rather than leaving it a diagnosed-but-unsolved gap.
+
+### Task 4.4 — Step 5
+**Question:** Ask Claude: *"What do teams coming from consumer apps consistently get wrong when they first specify enterprise dashboards?"* Compare against your list.
+
+**Solution:** Claude's answer named five patterns: under-specifying bulk actions/multi-select (consumer apps rarely need to act on many records at once); carrying over infinite-scroll/feed patterns without registering the cost of losing "how many total" and "where was I"; neglecting keyboard and hardware-input paths entirely, coming from mobile-first design habits; not designing for persistent, visible filter state, since consumer flows are usually short and linear; and treating "clean/simple" as the goal itself, when a dense interface's actual goal is "fast to parse" — two things that can directly conflict.
+
+Compared against the Step 3 list: the first four map cleanly onto bulk actions, pagination-vs-infinite-scroll, keyboard use, and filter state respectively. The fifth — "clean mistaken for the goal" — doesn't map onto any existing item. Scanning and data-density problems (as actually diagnosed across the five reference screens in Step 4) only ever ran in the direction of *too much* stimulus; this fifth point runs the opposite direction — a consumer-style minimalist redesign actively stripping out metadata or status a power user needs. Verdict: a real gap, not a relabeling — and arguably not a coequal seventh item either, since it's the design instinct that produces the wrong version of scanning and data density in the first place, sitting upstream of both rather than beside them. Kept as a flat sixth-plus-one note rather than restructuring the list, per instruction not to add an extra item.
 
 ---
