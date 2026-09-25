@@ -127,19 +127,6 @@ From the attached [FILE], extract [WHAT TO PULL OUT] and use it to build [OUTPUT
 Create an [Artifact Type] which does this [Function] based on this [input].
 ```
 
-### Iterative Prototype Build — Protect the Core Requirement
-*Use this when: you're refining a design or prototype over many rounds and there's one requirement that has to survive every round, not just the first one — built from Task 4.6, after watching a Log-out safety requirement quietly erode over 10 rounds of unrelated fixes.*
-
-```
-Build [SCREEN/COMPONENT] with the following structure and hierarchy: [DETAILS].
-
-Non-negotiable requirement, checked on every round from now on — including rounds that don't mention it: [THE SPECIFIC REQUIREMENT, e.g. "Log out must stay visually distinct in kind, not just position, from every other row on this screen"]. Before applying any requested change, check whether it would weaken this requirement, even indirectly — removing a separator, making a uniform style change that happens to erase a contrast, etc. If a requested change would weaken it, apply the change but flag the tradeoff explicitly rather than doing it silently.
-
-At the end of every round, state in one line whether the non-negotiable requirement still holds.
-```
-
-*What changed from the first version: the original prompt stated the Log-out requirement once, as prose describing the initial build. That was enough for round 1, but nothing carried it forward — two later rounds (a wrap fix, a gradient consistency fix) each seemed reasonable on their own and together undid it, because neither one was ever checked against it. The new version turns the requirement into a standing check applied to every future round, not a one-time instruction.*
-
 ### Write in My Voice
 *Use this when: You need the output to sound like you actually wrote it — tone, phrasing, and format included.*
 
